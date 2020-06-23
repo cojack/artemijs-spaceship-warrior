@@ -1,7 +1,7 @@
 {
-  "name": "tthreejs-boilerplate",
+  "name": "artemijs-spaceship-warrior",
   "version": "0.0.0",
-  "description": "ThreeJS + TypeScript + Boilerplate",
+  "description": "ThreeJS + ArtemiJS SpaceShip Warrior Example",
   "main": "dist/main.js",
   "scripts": {
     "start:dev-clean": "webpack-dev-server",
@@ -13,6 +13,7 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
+    "artemijs": "^0.0.3",
     "stats.js": "^0.17.0",
     "three": "^0.117.1"
   },
