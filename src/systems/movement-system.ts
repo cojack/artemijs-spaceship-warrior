@@ -1,4 +1,5 @@
 import {Aspect, ComponentMapper, Constructor, Entity, EntityProcessingSystem} from 'artemijs';
+import {Camera, Vector3} from 'three';
 import {Position, Velocity} from '../components';
 
 export class MovementSystem extends EntityProcessingSystem {

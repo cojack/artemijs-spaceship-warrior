@@ -47,6 +47,30 @@
         "x": 0,
         "y": 0
       }
+    },
+    "fighter": {
+      "frame": {
+        "x": 944,
+        "y": 2,
+        "w": 70,
+        "h": 86
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 86
+      },
+      "anchor": {
+        "x": 0,
+        "y": 0
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import {Entity, GroupManager, World} from 'artemijs';
 import {Scene} from 'three';
-import {Position, Velocity, Sprite, Player} from './components';
+import {Position, Velocity, Sprite, Player, Layer} from './components';
 import {GroupEnum} from './group.enum';
 
 export class EntityFactory {
@@ -13,6 +13,11 @@ export class EntityFactory {
 		entity.addComponent(velocity);
 
 		const sprite = new Sprite();
+		sprite.name = 'fighter';
+		sprite.r = 93/255;
+		sprite.g = 255/255;
+		sprite.b = 129/255;
+		sprite.layer = Layer.ACTORS_3;
 		entity.addComponent(sprite);
 
 		const player = new Player();

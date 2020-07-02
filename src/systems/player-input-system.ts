@@ -1,5 +1,5 @@
 import {Aspect, ComponentMapper, Entity, EntityProcessingSystem} from 'artemijs';
-import {Vector2} from 'three';
+import {Camera, Vector2, Vector3} from 'three';
 import {Player, Position, Velocity} from '../components';
 
 export class PlayerInputSystem extends EntityProcessingSystem {
@@ -14,7 +14,7 @@ export class PlayerInputSystem extends EntityProcessingSystem {
 	private vm: ComponentMapper<Velocity> | undefined;
 	private readonly mouseVector = new Vector2();
 
-	constructor() {
+	constructor(private readonly camera: Camera) {
 		super(Aspect.getAspectFor(Position, Velocity, Player));
 		window.addEventListener('mousemove', event => this.onMouseMove(event));
 	}
@@ -34,6 +34,12 @@ export class PlayerInputSystem extends EntityProcessingSystem {
 	}
 
 	private onMouseMove(event: MouseEvent) {
-		this.mouseVector.set(( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1);
+		const x = ( event.clientX / window.innerWidth ) * 2 - 1;
+		const y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		const vec = new Vector3(x, y, 0);
+		vec.unproject(this.camera);
+		vec.sub(this.camera.position).normalize();
+
+		this.mouseVector.set(vec.x, vec.y);
 	}
 }

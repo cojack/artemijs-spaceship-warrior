@@ -1,6 +1,6 @@
 import {Aspect, Bag, ComponentMapper, Entity, EntitySystem} from 'artemijs';
 import {atlasToSprites} from 'gingerale';
-import {Camera, Vector2, Vector3} from 'three';
+import {Camera, SpriteMaterial, Sprite as ThreeSprite, Vector3, Texture, Scene, TextureLoader} from 'three';
 import {Sprite, Position} from '../components';
 
 export class SpriteRenderSystem extends EntitySystem {
@@ -8,7 +8,9 @@ export class SpriteRenderSystem extends EntitySystem {
 	private pm: ComponentMapper<Position> | undefined;
 	private sm: ComponentMapper<Sprite> | undefined;
 
-	constructor(private readonly camera: Camera) {
+	private regions = new Map<string, ThreeSprite>();
+
+	constructor(private readonly scene: Scene) {
 		super(Aspect.getAspectForAll(Position, Sprite));
 	}
 
@@ -18,7 +20,16 @@ export class SpriteRenderSystem extends EntitySystem {
 		}
 		this.pm = this.world.getMapper(Position);
 		this.sm = this.world.getMapper(Sprite);
-		const sprites = await atlasToSprites('/assets/textures.png', '/assets/atlas.json');
+		const sprites: any = await atlasToSprites('/assets/textures.png', '/assets/atlas.json');
+		for (const image of sprites) {
+			const texture = new Texture(image.frame);
+			texture.needsUpdate = true;
+			const sprite = new ThreeSprite(new SpriteMaterial({map: texture}));
+			sprite.name = image.name;
+			sprite.visible = false;
+			this.regions.set(sprite.name, sprite);
+			this.scene.add(sprite);
+		}
 	}
 
 	protected checkProcessing(): boolean {
@@ -26,7 +37,7 @@ export class SpriteRenderSystem extends EntitySystem {
 	}
 
 	protected processEntities(entities: Bag<Entity>): void {
-		for(const entity of entities) {
+		for (const entity of entities) {
 			this.action(entity);
 		}
 	}
@@ -36,11 +47,11 @@ export class SpriteRenderSystem extends EntitySystem {
 			return;
 		}
 
-		const position = this.pm?.get(entity) as Position;
+		const position = this.pm.get(entity) as Position;
 		const sprite = this.sm?.get(entity) as Sprite;
-		const vec = new Vector3(position.x, position.y, 0);
 
-		vec.unproject(this.camera);
-		vec.sub( this.camera.position ).normalize();
+		const tsprite = this.regions.get(sprite.name) as ThreeSprite;
+		tsprite.visible = true;
+		tsprite?.position.set(position.x, position.y, 0);
 	}
 }

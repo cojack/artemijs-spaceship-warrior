@@ -41,8 +41,8 @@ export class SpaceshipWarrior {
 
 	private createSystems(): void {
 		this.world.setSystem(new MovementSystem());
-		this.world.setSystem(new PlayerInputSystem());
-		this.world.setSystem(new SpriteRenderSystem(this.gameScreen.camera as Camera));
+		this.world.setSystem(new PlayerInputSystem(this.gameScreen.camera as Camera));
+		this.world.setSystem(new SpriteRenderSystem(this.gameScreen.scene as Scene));
 	}
 
 	private createEntities(): void {
