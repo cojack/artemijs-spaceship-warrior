@@ -1,0 +1,52 @@
+{
+  "frames": {
+    "explosion": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "anchor": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "enemy3": {
+      "frame": {
+        "x": 516,
+        "y": 2,
+        "w": 278,
+        "h": 222
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 278,
+        "h": 222
+      },
+      "sourceSize": {
+        "w": 278,
+        "h": 222
+      },
+      "anchor": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  }
+}

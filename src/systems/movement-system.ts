@@ -10,7 +10,7 @@ export class MovementSystem extends EntityProcessingSystem {
 		super(Aspect.getAspectFor(Position, Velocity));
 	}
 
-	public initialize() {
+	public async initialize(): Promise<void> {
 		if (!this.world) {
 			return;
 		}

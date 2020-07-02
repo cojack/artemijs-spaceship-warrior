@@ -12,7 +12,7 @@ export class EntityFactory {
 		const velocity = new Velocity();
 		entity.addComponent(velocity);
 
-		const sprite = new Sprite(scene);
+		const sprite = new Sprite();
 		entity.addComponent(sprite);
 
 		const player = new Player();

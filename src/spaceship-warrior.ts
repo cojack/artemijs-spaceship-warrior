@@ -15,16 +15,16 @@ export class SpaceshipWarrior {
 		this.gameScreen.enableStats();
 	}
 
-	public bootstrap() {
+	public async bootstrap(): Promise<void> {
 		this.gameScreen.initialize();
-		this.bigBang();
+		await this.bigBang();
 	}
 
-	public start() {
+	public start(): void {
 		this.animate();
 	}
 
-	private animate(delta = 0) {
+	private animate(delta = 0): void {
 		requestAnimationFrame(delta => this.animate(delta));
 		this.world.setDelta(delta);
 		this.world.process();
@@ -32,20 +32,20 @@ export class SpaceshipWarrior {
 	}
 
 
-	private bigBang(): void {
+	private async bigBang(): Promise<void> {
 		this.world.setManager(new GroupManager());
 		this.createSystems();
-		this.world.initialize();
+		await this.world.initialize();
 		this.createEntities();
 	}
 
-	private createSystems() {
+	private createSystems(): void {
 		this.world.setSystem(new MovementSystem());
 		this.world.setSystem(new PlayerInputSystem());
 		this.world.setSystem(new SpriteRenderSystem(this.gameScreen.camera as Camera));
 	}
 
-	private createEntities() {
+	private createEntities(): void {
 		EntityFactory.createPlayer(this.world, this.gameScreen.scene as Scene, 0, 0).addToWorld();
 	}
 }

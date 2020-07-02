@@ -19,7 +19,7 @@ export class PlayerInputSystem extends EntityProcessingSystem {
 		window.addEventListener('mousemove', event => this.onMouseMove(event));
 	}
 
-	public initialize() {
+	public async initialize(): Promise<void> {
 		if (!this.world) {
 			return;
 		}

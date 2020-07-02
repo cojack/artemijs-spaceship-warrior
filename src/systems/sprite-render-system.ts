@@ -1,4 +1,5 @@
 import {Aspect, Bag, ComponentMapper, Entity, EntitySystem} from 'artemijs';
+import {atlasToSprites} from 'gingerale';
 import {Camera, Vector2, Vector3} from 'three';
 import {Sprite, Position} from '../components';
 
@@ -11,12 +12,13 @@ export class SpriteRenderSystem extends EntitySystem {
 		super(Aspect.getAspectForAll(Position, Sprite));
 	}
 
-	public initialize(): void {
+	public async initialize(): Promise<void> {
 		if (!this.world) {
 			return;
 		}
 		this.pm = this.world.getMapper(Position);
 		this.sm = this.world.getMapper(Sprite);
+		const sprites = await atlasToSprites('/assets/textures.png', '/assets/atlas.json');
 	}
 
 	protected checkProcessing(): boolean {
@@ -37,9 +39,8 @@ export class SpriteRenderSystem extends EntitySystem {
 		const position = this.pm?.get(entity) as Position;
 		const sprite = this.sm?.get(entity) as Sprite;
 		const vec = new Vector3(position.x, position.y, 0);
-		const pos = new Vector3();
+
 		vec.unproject(this.camera);
 		vec.sub( this.camera.position ).normalize();
-		sprite.position = vec;
 	}
 }

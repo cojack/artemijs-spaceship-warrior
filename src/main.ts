@@ -1,7 +1,7 @@
 import {SpaceshipWarrior} from './spaceship-warrior';
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
 	const spaceshipWarrior = new SpaceshipWarrior();
-	spaceshipWarrior.bootstrap();
+	await spaceshipWarrior.bootstrap();
 	spaceshipWarrior.start();
 });
