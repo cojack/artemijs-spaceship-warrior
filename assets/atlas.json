@@ -7,22 +7,7 @@
         "w": 512,
         "h": 512
       },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 512,
-        "h": 512
-      },
-      "sourceSize": {
-        "w": 512,
-        "h": 512
-      },
-      "anchor": {
-        "x": 0,
-        "y": 0
-      }
+      "rotated": false
     },
     "enemy3": {
       "frame": {
@@ -31,22 +16,25 @@
         "w": 278,
         "h": 222
       },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 278,
-        "h": 222
+      "rotated": false
+    },
+    "enemy2": {
+      "frame": {
+        "x": 796,
+        "y": 2,
+        "w": 146,
+        "h": 130
       },
-      "sourceSize": {
-        "w": 278,
-        "h": 222
+      "rotated": false
+    },
+    "enemy1": {
+      "frame": {
+        "x": 796,
+        "y": 134,
+        "w": 46,
+        "h": 46
       },
-      "anchor": {
-        "x": 0,
-        "y": 0
-      }
+      "rotated": false
     },
     "fighter": {
       "frame": {
@@ -55,22 +43,34 @@
         "w": 70,
         "h": 86
       },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 70,
-        "h": 86
+      "rotated": false
+    },
+    "star": {
+      "frame": {
+        "x": 944,
+        "y": 90,
+        "w": 18,
+        "h": 20
       },
-      "sourceSize": {
-        "w": 70,
-        "h": 86
+      "rotated": false
+    },
+    "bullet": {
+      "frame": {
+        "x": 1016,
+        "y": 2,
+        "w": 3,
+        "h": 10
       },
-      "anchor": {
-        "x": 0,
-        "y": 0
-      }
+      "rotated": false
+    },
+    "particle": {
+      "frame": {
+        "x": 1016,
+        "y": 14,
+        "w": 3,
+        "h": 3
+      },
+      "rotated": false
     }
   }
 }
