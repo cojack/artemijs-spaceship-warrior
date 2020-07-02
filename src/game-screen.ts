@@ -1,25 +1,15 @@
 import {World} from 'artemijs';
 import Stats from 'stats.js';
-import {
-	Camera,
-	OrthographicCamera,
-	Scene,
-	WebGLRenderer,
-	Vector3,
-	PerspectiveCamera,
-	TextureLoader,
-	Sprite,
-	SpriteMaterial, Color, BoxGeometry, Mesh, MeshBasicMaterial
-} from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {Camera, Color, PerspectiveCamera, Scene, WebGLRenderer} from 'three';
+import RendererStats from 'three-webgl-stats';
 
 export class GameScreen {
 	public scene: Scene | undefined;
 	public camera: Camera | undefined;
 
 	private stats: Stats | undefined;
+	private rendererStats: any;
 	private renderer: WebGLRenderer | undefined;
-	private cube: Mesh | undefined;
 
 	private readonly width: number;
 	private readonly height: number;
@@ -41,13 +31,20 @@ export class GameScreen {
 
 	public enableStats() {
 		this.stats = new Stats();
+		this.rendererStats = new RendererStats();
+		this.rendererStats.domElement.style.position	= 'absolute'
+		this.rendererStats.domElement.style.left	= '0px'
+		this.rendererStats.domElement.style.bottom	= '0px'
+
 		this.container.appendChild(this.stats.dom);
+		this.container.appendChild(this.rendererStats.domElement);
 	}
 
 	public render(delta: number) {
 		this.renderer?.render(this.scene as Scene, this.camera as Camera);
 		if (this.stats) {
 			this.stats.update();
+			this.rendererStats.update(this.renderer);
 		}
 	}
 

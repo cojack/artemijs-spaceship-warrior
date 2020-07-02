@@ -16,7 +16,8 @@
     "artemijs": "file:~/Projects/private/artemijs",
     "gingerale": "^2.5.3",
     "stats.js": "^0.17.0",
-    "three": "^0.117.1"
+    "three": "^0.117.1",
+    "three-webgl-stats": "^1.0.5"
   },
   "devDependencies": {
     "@types/stats.js": "^0.17.0",
